@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f6f0e6;
+  --foreground: #1a1916;
+  --forest: #16382c;
+  --forest-deep: #0f241c;
+  --gold: #b8924a;
+  --ink: #1a1916;
+  --muted: #6a645a;
+  --well: #ebe2d2;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-forest: var(--forest);
+  --color-gold: var(--gold);
+  --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-cormorant), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Helvetica, sans-serif;
+}
+
+::selection {
+  background: #16382c;
+  color: #f6f0e6;
+}
+
+.legal-copy h2 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  color: #16382c;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  background: #ebe2d2;
+  font-family: inherit;
+}
+
+.leaflet-control-attribution {
+  font-size: 10px;
+  background: rgba(246, 240, 230, 0.9);
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(15, 36, 28, 0.12);
+}
+
+.leaflet-popup-content {
+  margin: 14px 16px;
+}
+
+.leaflet-popup-tip {
+  background: #fff;
+}
+
+.fuelup-marker {
+  background: none;
+  border: none;
+}
+
+.fuelup-pin {
+  position: relative;
+  display: block;
+  width: 28px;
+  height: 28px;
+  border: 2px solid #b8924a;
+  border-radius: 50% 50% 50% 0;
+  background: #16382c;
+  box-shadow: 0 8px 16px rgba(15, 36, 28, 0.28);
+  transform: rotate(-45deg);
+}
+
+.fuelup-pin-dot {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #f6f0e6;
+}
