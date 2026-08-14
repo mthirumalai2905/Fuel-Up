@@ -40,8 +40,8 @@ export default function PrivacyPage() {
           You can browse a short preview of our bowls without an account. To see the full menu,
           nutrition details, and checkout, you sign in. We use Clerk to run those accounts. Clerk
           is an authentication service. When you create or use an account, Clerk handles the
-          sign-in details you give it — typically an email address, a password or a sign-in
-          method you choose, and your name if you add one — plus the session needed to keep you
+          sign-in details you give it, typically an email address, a password or a sign-in
+          method you choose, and your name if you add one, plus the session needed to keep you
           signed in.
         </p>
         <p className="mt-3">
@@ -165,8 +165,8 @@ export default function PrivacyPage() {
       <section>
         <h2 className="font-serif text-2xl text-[#1c1b18]">Updates to this policy</h2>
         <p className="mt-3">
-          If the website changes — for example, if we add a contact form, a newsletter, or a
-          payment provider — we will update this page so it matches how the cafe site actually
+          If the website changes, for example if we add a contact form, a newsletter, or a
+          payment provider, we will update this page so it matches how the cafe site actually
           works. The date at the top shows when we last revised it.
         </p>
       </section>

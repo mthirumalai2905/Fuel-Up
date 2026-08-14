@@ -33,10 +33,10 @@ export const bowls: Bowl[] = [
   {
     id: "1",
     slug: "protein-soya-salad",
-    name: "Protein Soya Salad — 100 g Dry Soya",
+    name: "Protein Soya Salad, 100 g Dry Soya",
     shortName: "Protein Soya Salad",
     description:
-      "100 g soya chunks tossed with fresh vegetables, herbs and flavourful spices — a hearty, protein-rich salad made for fitness-focused meals.",
+      "100 g soya chunks tossed with fresh vegetables, herbs and flavourful spices. A hearty, protein-rich salad made for fitness-focused meals.",
     image: "/bowls/protein-soya-salad.png",
     category: "High Protein Salad bowl",
     diet: "veg",
@@ -47,10 +47,10 @@ export const bowls: Bowl[] = [
   {
     id: "2",
     slug: "rajma-paneer",
-    name: "Rajma Paneer — FuelUp",
+    name: "Rajma Paneer",
     shortName: "Rajma Paneer",
     description:
-      "Protein-rich rajma and soft paneer tossed with fresh vegetables and Indian spices — wholesome, filling and delicious.",
+      "Protein-rich rajma and soft paneer tossed with fresh vegetables and Indian spices. Wholesome, filling and delicious.",
     image: "/bowls/rajma-paneer.png",
     category: "High Protein Salad bowl",
     diet: "veg",
@@ -78,7 +78,7 @@ export const bowls: Bowl[] = [
     name: "Creamy Grilled Chicken Rice Bowl",
     shortName: "Creamy Grilled Chicken Rice Bowl",
     description:
-      "Juicy grilled chicken with wholesome rice, fresh white sos cream and herbs — high-protein, filling and flavourful.",
+      "Juicy grilled chicken with wholesome rice, fresh white sos cream and herbs. High-protein, filling and flavourful.",
     image: "/bowls/creamy-grilled-chicken-rice-bowl.png",
     category: "Protein Rice Bowl",
     diet: "non-veg",
@@ -92,7 +92,7 @@ export const bowls: Bowl[] = [
     name: "Grilled paneer salad bowl",
     shortName: "Grilled paneer salad bowl",
     description:
-      "Grilled paneer with fresh boiled vegetables, herbs and light seasoning — high-protein, fresh and filling.",
+      "Grilled paneer with fresh boiled vegetables, herbs and light seasoning. High-protein, fresh and filling.",
     image: "/bowls/grilled-paneer-salad-bowl.png",
     category: "High Protein Salad bowl",
     diet: "veg",
@@ -106,7 +106,7 @@ export const bowls: Bowl[] = [
     name: "Creamy Paneer Rice Bowl",
     shortName: "Creamy Paneer Rice Bowl",
     description:
-      "Creamy paneer with rice, fresh white sos cream and mild spices — rich, filling and delicious.",
+      "Creamy paneer with rice, fresh white sos cream and mild spices. Rich, filling and delicious.",
     image: "/bowls/creamy-paneer-rice-bowl.png",
     category: "Protein Rice Bowl",
     diet: "veg",
@@ -120,7 +120,7 @@ export const bowls: Bowl[] = [
     name: "Paneer Rajma Chawal",
     shortName: "Paneer Rajma Chawal",
     description:
-      "Rajma and soft paneer served with wholesome rice — hearty, flavourful and salads protein-rich.",
+      "Rajma and soft paneer served with wholesome rice. Hearty, flavourful and protein-rich.",
     image: "/bowls/paneer-rajma-chawal.png",
     category: "Protein Rice Bowl",
     diet: "veg",
@@ -159,7 +159,7 @@ export const bowls: Bowl[] = [
   {
     id: "10",
     slug: "banana-smoothie-bowl",
-    name: "Banana Smoothie Bowl — FuelUp",
+    name: "Banana Smoothie Bowl",
     shortName: "Banana Smoothie Bowl",
     description:
       "A thick and creamy banana smoothie bowl blended with wholesome ingredients and topped with crunchy nuts, seeds and fresh banana. Naturally delicious, filling and perfect for a healthy breakfast.",
@@ -205,7 +205,7 @@ export const bowls: Bowl[] = [
     name: "Peanut butter bread (15 g Protein)",
     shortName: "Peanut butter bread",
     description:
-      "Multigrain toast topped with creamy peanut butter — wholesome, filling and perfect for a quick healthy breakfast.",
+      "Multigrain toast topped with creamy peanut butter. Wholesome, filling and perfect for a quick healthy breakfast.",
     image: "/bowls/peanut-butter-bread.png",
     category: "Breakfast",
     diet: "veg",
@@ -219,7 +219,7 @@ export const bowls: Bowl[] = [
     name: "Multigrain bread omelette",
     shortName: "Multigrain bread omelette",
     description:
-      "Fluffy masala omelette served with toasted multigrain bread — wholesome, filling and protein-rich.",
+      "Fluffy masala omelette served with toasted multigrain bread. Wholesome, filling and protein-rich.",
     image: "/bowls/multigrain-bread-omelette.png",
     category: "Breakfast",
     diet: "egg",
@@ -230,10 +230,10 @@ export const bowls: Bowl[] = [
   {
     id: "15",
     slug: "grilled-chicken-salad-bowl",
-    name: "Grilled Chicken Salad Bowl — FuelUp",
+    name: "Grilled Chicken Salad Bowl",
     shortName: "Grilled Chicken Salad Bowl",
     description:
-      "Juicy grilled chicken with fresh boiled vegetables, herbs and light seasoning — high-protein, fresh and filling.",
+      "Juicy grilled chicken with fresh boiled vegetables, herbs and light seasoning. High-protein, fresh and filling.",
     image: "/bowls/grilled-chicken-salad-bowl.png",
     category: "High Protein Salad bowl",
     diet: "non-veg",
@@ -247,7 +247,7 @@ export const bowls: Bowl[] = [
     name: "Mixed sprouts power chaat bowl",
     shortName: "Mixed sprouts power chaat bowl",
     description:
-      "Mixed sprouts, chickpeas and fresh veggies tossed with zesty spices — a wholesome, protein-rich and fibre-packed power bowl.",
+      "Mixed sprouts, chickpeas and fresh veggies tossed with zesty spices. A wholesome, protein-rich and fibre-packed power bowl.",
     image: "/bowls/mixed-sprouts-power-chaat-bowl.png",
     category: "High Protein Salad bowl",
     diet: "veg",

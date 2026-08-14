@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     default: `${site.brandName} · Karvenagar`,
     template: `%s | ${site.brandName}`,
   },
-  description: `${site.brandName} is a high-protein cafe in Karvenagar, Pune. Typical spend ${site.typicalSpend}.`,
+  description: `${site.brandName} is a high-protein cafe on Cummins College Road, Karvenagar, Pune.`,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

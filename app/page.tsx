@@ -22,8 +22,8 @@ export default function Home() {
           High-protein bowls, made for everyday fuel.
         </h1>
         <p className="mx-auto mt-6 max-w-xl text-[16px] leading-7 text-[#6a645a]">
-          A small cafe on Cummins College Road. Fresh bowls, honest macros,
-          typical spend {site.typicalSpend}.
+          A small cafe on Cummins College Road. Fresh bowls and honest macros
+          from the kitchen cards.
         </p>
       </section>
 
@@ -38,7 +38,7 @@ export default function Home() {
               className="object-cover"
               sizes="1180px"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0f241c]/25 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0f241c]/10 via-transparent to-transparent" />
           </div>
 
           <div className="mt-12 grid gap-10 border-b border-[#16382c]/10 pb-16 md:grid-cols-[1.1fr_0.9fr] md:items-end">
@@ -74,11 +74,11 @@ export default function Home() {
         </section>
       ) : null}
 
-      <section id="menu" className="mx-auto w-full max-w-[1180px] px-4 py-20 sm:px-6">
+      <section id="menu" className="mx-auto w-full max-w-[1180px] scroll-mt-32 px-4 py-20 sm:px-6">
         <HomeMenu />
       </section>
 
-      <section id="mission" className="bg-[#16382c]">
+      <section id="mission" className="scroll-mt-32 bg-[#16382c]">
         <div className="mx-auto grid w-full max-w-[1180px] gap-12 px-4 py-20 sm:px-6 md:grid-cols-[0.9fr_1.1fr] md:items-center">
           <p className="font-serif text-4xl leading-[1.15] tracking-[-0.02em] text-[#f6f0e6] sm:text-5xl">
             Fresh bowls, honest macros, everyday prices.
@@ -89,7 +89,6 @@ export default function Home() {
               protein bowls, salads, smoothie bowls, and simple breakfast plates for students and
               neighbours who want food that actually fills them.
             </p>
-            <p>Typical spend is {site.typicalSpend}.</p>
           </div>
         </div>
       </section>

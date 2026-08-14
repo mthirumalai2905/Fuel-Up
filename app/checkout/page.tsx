@@ -28,9 +28,9 @@ export default function CheckoutPage() {
         </p>
 
         <Show when="signed-out">
-          <div className="mt-10 rounded-[28px] border border-[#16382c]/8 bg-white/70 p-8">
+          <div className="mt-10 rounded-[28px] border border-[#16382c]/8 bg-white/80 p-8 shadow-[0_16px_40px_rgba(22,56,44,0.06)]">
             <p className="font-serif text-2xl text-[#16382c]">Sign in to request bowls</p>
-            <p className="mt-2 text-[#6a645a]">Cafe pickup only — pay when you collect.</p>
+            <p className="mt-2 text-[#6a645a]">Cafe pickup only. Pay when you collect.</p>
             <Link
               href={signInHref("/checkout")}
               className="mt-6 inline-flex rounded-full bg-[#16382c] px-6 py-2.5 text-[11px] font-medium tracking-[0.16em] text-[#f6f0e6] uppercase transition hover:bg-[#0f241c]"
@@ -42,15 +42,15 @@ export default function CheckoutPage() {
 
         <Show when="signed-in">
           {placed ? (
-            <div className="mt-10 rounded-[28px] border border-[#16382c]/8 bg-white/70 p-8">
+            <div className="mt-10 rounded-[28px] border border-[#16382c]/8 bg-white/80 p-8 shadow-[0_16px_40px_rgba(22,56,44,0.06)]">
               <h2 className="font-serif text-3xl text-[#16382c]">Request saved</h2>
               <p className="mt-3 leading-7 text-[#6a645a]">
-                Confirm this list and pay at {site.brandName} — {site.address}.
+                Confirm this list and pay at {site.brandName}, {site.address}.
                 Call{" "}
                 <a className="text-[#16382c] underline underline-offset-4" href={`tel:${site.phoneTel}`}>
                   {site.phoneDisplay}
                 </a>{" "}
-                if you want to check pickup timing. Typical spend {site.typicalSpend}.
+                if you want to check pickup timing.
               </p>
               {placedSummary.length > 0 ? (
                 <ul className="mt-5 list-disc space-y-1 pl-5 text-[#1a1916]">
@@ -65,7 +65,7 @@ export default function CheckoutPage() {
               </Link>
             </div>
           ) : lines.length === 0 ? (
-            <div className="mt-10 rounded-[28px] border border-[#16382c]/8 bg-white/70 p-8">
+            <div className="mt-10 rounded-[28px] border border-[#16382c]/8 bg-white/80 p-8 shadow-[0_16px_40px_rgba(22,56,44,0.06)]">
               <p className="font-serif text-2xl text-[#16382c]">Your bag is empty.</p>
               <Link href="/menu" className="mt-4 inline-block text-[#16382c] underline underline-offset-4">
                 Browse bowls
@@ -76,18 +76,20 @@ export default function CheckoutPage() {
               {lines.map((line) => (
                 <div
                   key={line.bowl.slug}
-                  className="flex gap-4 rounded-[24px] border border-[#16382c]/8 bg-white/80 p-4"
+                  className="flex gap-4 rounded-[24px] border border-[#16382c]/8 bg-white/80 p-4 shadow-[0_10px_28px_rgba(22,56,44,0.05)]"
                 >
                   <div className="relative h-24 w-24 overflow-hidden rounded-2xl bg-[#ebe2d2]">
                     <Image
                       src={line.bowl.image}
                       alt={line.bowl.shortName}
                       fill
-                      className="object-contain p-2"
+                      className="object-contain"
                     />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="font-semibold tracking-wide uppercase">{line.bowl.shortName}</p>
+                    <p className="text-[13px] font-semibold tracking-[0.08em] uppercase">
+                      {line.bowl.shortName}
+                    </p>
                     <p className="mt-1 text-sm text-[#6a645a]">
                       {line.bowl.nutrition
                         ? `${line.bowl.nutrition.calories} kcal · ${line.bowl.nutrition.protein}g protein`
@@ -96,22 +98,24 @@ export default function CheckoutPage() {
                     <div className="mt-3 flex items-center gap-3">
                       <button
                         type="button"
-                        className="flex h-8 w-8 items-center justify-center rounded-full border border-[#16382c]/20"
+                        className="flex h-8 w-8 items-center justify-center rounded-full border border-[#16382c]/20 transition hover:bg-[#ebe2d2]"
                         onClick={() => setQty(line.bowl.slug, line.qty - 1)}
+                        aria-label="Decrease quantity"
                       >
                         −
                       </button>
-                      <span>{line.qty}</span>
+                      <span className="min-w-4 text-center">{line.qty}</span>
                       <button
                         type="button"
-                        className="flex h-8 w-8 items-center justify-center rounded-full border border-[#16382c]/20"
+                        className="flex h-8 w-8 items-center justify-center rounded-full border border-[#16382c]/20 transition hover:bg-[#ebe2d2]"
                         onClick={() => setQty(line.bowl.slug, line.qty + 1)}
+                        aria-label="Increase quantity"
                       >
                         +
                       </button>
                       <button
                         type="button"
-                        className="text-sm text-[#8a4b1f]"
+                        className="text-sm text-[#8a4b1f] underline-offset-4 hover:underline"
                         onClick={() => remove(line.bowl.slug)}
                       >
                         Remove
@@ -121,11 +125,11 @@ export default function CheckoutPage() {
                 </div>
               ))}
 
-              <div className="rounded-[24px] border border-[#16382c]/8 bg-white/80 p-6">
+              <div className="rounded-[24px] border border-[#16382c]/8 bg-white/80 p-6 shadow-[0_10px_28px_rgba(22,56,44,0.05)]">
                 <p className="text-sm leading-6 text-[#6a645a]">
                   Requesting as{" "}
                   {user?.fullName || user?.primaryEmailAddress?.emailAddress || "signed-in guest"}.
-                  Pay at the cafe. Typical spend {site.typicalSpend}.
+                  Pay at the cafe.
                 </p>
                 <label className="mt-5 block text-sm font-medium" htmlFor="order-notes">
                   Notes for the cafe (optional)

@@ -39,24 +39,5 @@ export default async function MenuPage() {
     );
   }
 
-  return (
-    <div className="bg-[#f6f0e6] px-4 py-16 sm:px-6">
-      <div className="mx-auto w-full max-w-[1180px]">
-        <p className="text-[11px] font-medium tracking-[0.22em] text-[#b8924a] uppercase">
-          Full menu
-        </p>
-        <h1 className="mt-3 font-serif text-5xl tracking-[-0.02em] text-[#16382c]">
-          Every Fuel Up bowl
-        </h1>
-        <p className="mt-4 max-w-2xl text-[16px] leading-7 text-[#6a645a]">
-          Nutrition figures come from the kitchen cards. Prices are confirmed at
-          the cafe — typical spend is listed in the footer.
-        </p>
-
-        <div className="mt-10">
-          <MenuExplorer signedIn />
-        </div>
-      </div>
-    </div>
-  );
+  return <MenuExplorer signedIn />;
 }

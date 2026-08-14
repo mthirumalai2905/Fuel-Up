@@ -21,13 +21,13 @@ export const clerkAppearance = {
   elements: {
     rootBox: "w-full",
     cardBox: "w-full shadow-none",
-    card: "bg-transparent shadow-none p-0",
+    card: "bg-transparent shadow-none p-6 sm:p-8",
     headerTitle: "font-serif text-[#16382c] text-3xl font-normal",
     headerSubtitle: "text-[#6a645a]",
     socialButtonsBlockButton:
-      "border border-[#16382c]/15 bg-white hover:bg-[#ebe2d2]",
+      "border border-[#16382c]/12 bg-white hover:bg-[#f6f0e6]",
     formFieldInput:
-      "border-[#16382c]/15 bg-white focus:border-[#16382c] focus:ring-[#16382c]",
+      "border-[#16382c]/12 bg-white focus:border-[#16382c] focus:ring-[#16382c]",
     formButtonPrimary:
       "bg-[#16382c] hover:bg-[#0f241c] text-[#f6f0e6] shadow-none",
     footerActionLink: "text-[#16382c] hover:text-[#0f241c]",

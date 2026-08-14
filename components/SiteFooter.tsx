@@ -28,7 +28,7 @@ export function SiteFooter() {
         </div>
         <nav aria-label="Legal">
           <p className="text-[11px] font-medium tracking-[0.2em] text-[#b8924a] uppercase">
-            House notes
+            Pages
           </p>
           <div className="mt-3 flex flex-col gap-2 text-[14px]">
             <Link className="hover:text-[#f6f0e6]" href="/#menu">
@@ -44,8 +44,10 @@ export function SiteFooter() {
         </nav>
       </div>
       <div className="mx-auto mt-14 flex w-full max-w-[1180px] justify-between border-t border-white/10 pt-6 text-[12px] tracking-wide text-[#9a9286]">
-        <p>Typical spend {site.typicalSpend}</p>
         <p>Fuel Up, Karvenagar</p>
+        <Link className="hover:text-[#d8d0c4]" href="/#visit">
+          Find the cafe
+        </Link>
       </div>
     </footer>
   );

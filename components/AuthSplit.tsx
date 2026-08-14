@@ -1,53 +1,90 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { site } from "@/lib/site";
+
+const backgrounds = [
+  "/bowls/grilled-paneer-salad-bowl.png",
+  "/bowls/creamy-grilled-chicken-rice-bowl.png",
+  "/bowls/rajma-paneer.png",
+  "/bowls/banana-smoothie-bowl.png",
+];
+
+function FactMark() {
+  return (
+    <span
+      className="mt-1.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#b8924a] text-[#b8924a]"
+      aria-hidden
+    >
+      <svg viewBox="0 0 16 16" className="h-2.5 w-2.5" fill="currentColor">
+        <path d="M6.3 11.2 3.4 8.3l.9-.9 2 2 5.4-5.4.9.9z" />
+      </svg>
+    </span>
+  );
+}
 
 export function AuthSplit({
   eyebrow,
   title,
   copy,
+  facts,
   children,
 }: {
   eyebrow: string;
   title: string;
   copy: string;
+  facts: string[];
   children: ReactNode;
 }) {
   return (
     <div className="grid min-h-dvh bg-[#f6f0e6] lg:grid-cols-2">
-      <aside className="relative flex flex-col justify-between bg-[#0f241c] px-8 py-10 text-[#d8d0c4] sm:px-12 lg:px-16 lg:py-14">
-        <Link
-          href="/"
-          className="font-serif text-3xl tracking-[-0.03em] text-[#f6f0e6]"
-        >
-          {site.brandName.toLowerCase()}
-        </Link>
-
-        <div className="max-w-md py-12 lg:py-0">
-          <p className="text-[11px] font-medium tracking-[0.28em] text-[#b8924a] uppercase">
-            {eyebrow}
-          </p>
-          <h1 className="mt-5 font-serif text-4xl leading-[1.1] tracking-[-0.02em] text-[#f6f0e6] sm:text-5xl">
-            {title}
-          </h1>
-          <p className="mt-5 text-[16px] leading-8">{copy}</p>
-          <div className="mt-10 h-px w-12 bg-[#b8924a]" />
-          <p className="mt-6 text-[14px] leading-7">{site.address}</p>
-          <a
-            href={`tel:${site.phoneTel}`}
-            className="mt-2 inline-block text-[#f6f0e6] underline-offset-4 hover:underline"
-          >
-            {site.phoneDisplay}
-          </a>
+      <aside className="relative isolate min-h-[420px] overflow-hidden text-[#d8d0c4] lg:min-h-dvh">
+        <div className="absolute inset-0 grid grid-cols-2 grid-rows-2">
+          {backgrounds.map((src) => (
+            <div key={src} className="relative">
+              <Image src={src} alt="" fill className="object-cover" sizes="25vw" />
+            </div>
+          ))}
         </div>
+        <div className="absolute inset-0 bg-[#0f241c]/78" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0f241c] via-[#0f241c]/50 to-[#0f241c]/30" />
 
-        <p className="text-[12px] tracking-wide text-[#9a9286]">
-          Typical spend {site.typicalSpend}
-        </p>
+        <div className="relative z-10 flex h-full flex-col justify-between px-8 py-10 sm:px-12 lg:px-16 lg:py-14">
+          <Link
+            href="/"
+            className="font-serif text-3xl tracking-[-0.03em] text-[#f6f0e6]"
+          >
+            {site.brandName.toLowerCase()}
+          </Link>
+
+          <div className="max-w-md py-10 lg:py-0">
+            <p className="text-[11px] font-medium tracking-[0.28em] text-[#b8924a] uppercase">
+              {eyebrow}
+            </p>
+            <h1 className="mt-5 font-serif text-4xl leading-[1.1] tracking-[-0.02em] text-[#f6f0e6] sm:text-5xl">
+              {title}
+            </h1>
+            <p className="mt-5 text-[16px] leading-8 text-[#e6dfd4]">{copy}</p>
+            <ul className="mt-10 space-y-4">
+              {facts.map((fact) => (
+                <li key={fact} className="flex gap-3">
+                  <FactMark />
+                  <p className="text-[15px] leading-7 text-[#e6dfd4]">{fact}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <p className="text-[12px] tracking-wide text-[#b8b0a4]">
+            A small cafe on Cummins College Road
+          </p>
+        </div>
       </aside>
 
-      <section className="flex items-center justify-center px-6 py-12 sm:px-10">
-        <div className="w-full max-w-[420px]">{children}</div>
+      <section className="relative flex items-center justify-center bg-[#f6f0e6] px-6 py-14 sm:px-10">
+        <div className="relative z-10 w-full max-w-[420px] rounded-[28px] border border-[#16382c]/8 bg-white p-2 shadow-[0_24px_60px_rgba(15,36,28,0.1)]">
+          {children}
+        </div>
       </section>
     </div>
   );

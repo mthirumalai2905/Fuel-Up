@@ -7,7 +7,7 @@ export const site = {
   phoneRaw: "9960767653",
   phoneTel: "+919960767653",
   typicalSpend: "₹1–200 per person",
-  /** Public landmark for Cummins College Road, Karvenagar — not a surveyed shop door. */
+  /** Public landmark for Cummins College Road, Karvenagar. Not a surveyed shop door. */
   map: {
     lat: 18.4860731,
     lng: 73.8162282,

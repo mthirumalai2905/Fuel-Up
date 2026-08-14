@@ -25,7 +25,7 @@ export function BowlCard({
             src={bowl.image}
             alt={bowl.shortName}
             fill
-            className="object-contain p-6 transition duration-700 group-hover:scale-[1.04]"
+            className="object-contain"
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           />
         </div>

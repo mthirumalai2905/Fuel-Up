@@ -127,7 +127,7 @@ export default function TermsPage() {
         <p className="mt-3">
           This website is provided as a simple way to find the cafe and read about us. To the
           extent the law allows, {site.brandName} is not responsible for losses that come only
-          from using or being unable to use the website — for example, if a page is temporarily
+          from using or being unable to use the website, for example if a page is temporarily
           unavailable or a description is out of date.
         </p>
         <p className="mt-3">

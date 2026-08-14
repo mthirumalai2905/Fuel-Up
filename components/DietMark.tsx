@@ -20,7 +20,7 @@ export function DietMark({ diet }: { diet: Diet }) {
 
   return (
     <span
-      className={`inline-flex h-[18px] w-[18px] items-center justify-center border-[1.5px] bg-white ${mark.box}`}
+      className={`inline-flex h-[18px] w-[18px] items-center justify-center border-[1.5px] bg-[#ebe2d2] ${mark.box}`}
       title={dietLabel(diet)}
       aria-label={dietLabel(diet)}
     >

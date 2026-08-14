@@ -8,9 +8,24 @@ import { MacroRow } from "@/components/MacroRow";
 import { AddToBagButton } from "@/components/AddToBagButton";
 import { signInHref } from "@/lib/auth";
 import { bowls, dietLabel, getBowlBySlug } from "@/lib/menu";
+import type { Metadata } from "next";
 
 export function generateStaticParams() {
   return bowls.map((bowl) => ({ slug: bowl.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const bowl = getBowlBySlug(slug);
+  if (!bowl) return { title: "Bowl" };
+  return {
+    title: bowl.shortName,
+    description: bowl.description,
+  };
 }
 
 export default async function BowlDetailPage({
@@ -28,12 +43,12 @@ export default async function BowlDetailPage({
   return (
     <div className="bg-[#f6f0e6] px-4 py-12 sm:px-6">
       <div className="mx-auto w-full max-w-3xl overflow-hidden rounded-[28px] bg-white text-[#1a1916] shadow-[0_24px_60px_rgba(22,56,44,0.1)]">
-        <div className="relative aspect-[16/10] bg-[#ebe2d2]">
+        <div className="relative aspect-square bg-[#ebe2d2]">
           <Image
             src={bowl.image}
             alt={bowl.shortName}
             fill
-            className="object-contain p-8"
+            className="object-contain"
             priority
             sizes="768px"
           />
@@ -79,27 +94,12 @@ export default async function BowlDetailPage({
 
           <Show when="signed-in">
             {bowl.nutrition ? (
-              <div>
-                <p className="text-[11px] font-medium tracking-[0.18em] text-[#16382c] uppercase">
-                  Approx. nutrition — per serving
+              <div className="rounded-[22px] bg-[#f6f0e6] p-5">
+                <p className="mb-3 text-[11px] font-medium tracking-[0.18em] uppercase">
+                  Kitchen card, per serving
                 </p>
-                <ul className="mt-3 space-y-1.5 text-[#1a1916]">
-                  <li>
-                    <strong>Calories:</strong> ~{bowl.nutrition.calories} kcal
-                  </li>
-                  <li>
-                    <strong>Protein:</strong> ~{bowl.nutrition.protein} g
-                  </li>
-                  <li>
-                    <strong>Carbohydrates:</strong> ~{bowl.nutrition.carbs} g
-                  </li>
-                  <li>
-                    <strong>Fat:</strong> ~{bowl.nutrition.fat} g
-                  </li>
-                  <li>
-                    <strong>Fiber:</strong> ~{bowl.nutrition.fiberLabel}
-                  </li>
-                </ul>
+                <MacroRow bowl={bowl} />
+                <p className="mt-4 text-sm text-[#6a645a]">Fiber: {bowl.nutrition.fiberLabel}</p>
               </div>
             ) : (
               <p className="text-sm text-[#6a645a]">
@@ -120,13 +120,6 @@ export default async function BowlDetailPage({
               <span className="rounded-full bg-[#ebe2d2] px-3 py-1 text-xs font-medium text-[#6a645a]">
                 {dietLabel(bowl.diet)}
               </span>
-            </div>
-
-            <div className="rounded-[22px] bg-[#f6f0e6] p-5">
-              <p className="mb-3 text-[11px] font-medium tracking-[0.18em] uppercase">
-                Nutritional Info
-              </p>
-              <MacroRow bowl={bowl} />
             </div>
 
             <div className="flex items-center justify-end border-t border-[#16382c]/10 pt-5">
