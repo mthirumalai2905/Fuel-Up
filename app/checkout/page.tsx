@@ -16,25 +16,22 @@ export default function CheckoutPage() {
   const [placedSummary, setPlacedSummary] = useState<string[]>([]);
 
   return (
-    <div className="bg-[#f6f0e6] px-4 py-16 sm:px-6">
+    <div className="bg-[#f6f0e6] px-4 py-12 sm:px-6 sm:py-16">
       <div className="mx-auto w-full max-w-3xl">
-        <p className="text-[11px] font-medium tracking-[0.22em] text-[#b8924a] uppercase">
-          Pickup
-        </p>
-        <h1 className="mt-3 font-serif text-5xl tracking-[-0.02em] text-[#16382c]">Checkout</h1>
-        <p className="mt-3 text-[16px] leading-7 text-[#6a645a]">
+        <p className="eyebrow">Pickup</p>
+        <h1 className="mt-3 font-serif text-4xl tracking-[-0.02em] text-[#16382c] sm:text-5xl">
+          Checkout
+        </h1>
+        <p className="mt-3 text-[15px] leading-7 text-[#6a645a] sm:text-[16px]">
           This is an order request for pickup at the cafe. We do not take card
           or online payments on this website.
         </p>
 
         <Show when="signed-out">
-          <div className="mt-10 rounded-[28px] border border-[#16382c]/8 bg-white/80 p-8 shadow-[0_16px_40px_rgba(22,56,44,0.06)]">
+          <div className="mt-10 rounded-[24px] border border-[#16382c]/8 bg-white/80 p-7 shadow-[0_16px_40px_rgba(22,56,44,0.06)] sm:p-8">
             <p className="font-serif text-2xl text-[#16382c]">Sign in to request bowls</p>
             <p className="mt-2 text-[#6a645a]">Cafe pickup only. Pay when you collect.</p>
-            <Link
-              href={signInHref("/checkout")}
-              className="mt-6 inline-flex rounded-full bg-[#16382c] px-6 py-2.5 text-[11px] font-medium tracking-[0.16em] text-[#f6f0e6] uppercase transition hover:bg-[#0f241c]"
-            >
+            <Link href={signInHref("/checkout")} className="btn btn-primary mt-6">
               Sign in
             </Link>
           </div>
@@ -42,7 +39,7 @@ export default function CheckoutPage() {
 
         <Show when="signed-in">
           {placed ? (
-            <div className="mt-10 rounded-[28px] border border-[#16382c]/8 bg-white/80 p-8 shadow-[0_16px_40px_rgba(22,56,44,0.06)]">
+            <div className="mt-10 rounded-[24px] border border-[#16382c]/8 bg-white/80 p-7 shadow-[0_16px_40px_rgba(22,56,44,0.06)] sm:p-8">
               <h2 className="font-serif text-3xl text-[#16382c]">Request saved</h2>
               <p className="mt-3 leading-7 text-[#6a645a]">
                 Confirm this list and pay at {site.brandName}, {site.address}.
@@ -60,14 +57,20 @@ export default function CheckoutPage() {
                 </ul>
               ) : null}
               {notes ? <p className="mt-3 text-sm text-[#6a645a]">Notes: {notes}</p> : null}
-              <Link href="/menu" className="mt-6 inline-block text-[#16382c] underline underline-offset-4">
-                Back to menu
-              </Link>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link href="/menu" className="btn btn-primary">
+                  Back to menu
+                </Link>
+                <a href={`tel:${site.phoneTel}`} className="btn btn-outline">
+                  Call the cafe
+                </a>
+              </div>
             </div>
           ) : lines.length === 0 ? (
-            <div className="mt-10 rounded-[28px] border border-[#16382c]/8 bg-white/80 p-8 shadow-[0_16px_40px_rgba(22,56,44,0.06)]">
-              <p className="font-serif text-2xl text-[#16382c]">Your bag is empty.</p>
-              <Link href="/menu" className="mt-4 inline-block text-[#16382c] underline underline-offset-4">
+            <div className="mt-10 rounded-[24px] border border-[#16382c]/8 bg-white/80 p-7 shadow-[0_16px_40px_rgba(22,56,44,0.06)] sm:p-8">
+              <p className="font-serif text-2xl text-[#16382c]">Your bag is empty</p>
+              <p className="mt-2 text-[#6a645a]">Add a bowl from the menu, then request pickup.</p>
+              <Link href="/menu" className="btn btn-primary mt-5">
                 Browse bowls
               </Link>
             </div>
@@ -76,9 +79,9 @@ export default function CheckoutPage() {
               {lines.map((line) => (
                 <div
                   key={line.bowl.slug}
-                  className="flex gap-4 rounded-[24px] border border-[#16382c]/8 bg-white/80 p-4 shadow-[0_10px_28px_rgba(22,56,44,0.05)]"
+                  className="flex gap-4 rounded-[20px] border border-[#16382c]/8 bg-white/80 p-4 shadow-[0_10px_28px_rgba(22,56,44,0.05)]"
                 >
-                  <div className="relative h-24 w-24 overflow-hidden rounded-2xl bg-[#ebe2d2]">
+                  <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl bg-[#ebe2d2] sm:h-24 sm:w-24">
                     <Image
                       src={line.bowl.image}
                       alt={line.bowl.shortName}
@@ -87,7 +90,7 @@ export default function CheckoutPage() {
                     />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[13px] font-semibold tracking-[0.08em] uppercase">
+                    <p className="text-[12px] font-semibold tracking-[0.08em] uppercase sm:text-[13px]">
                       {line.bowl.shortName}
                     </p>
                     <p className="mt-1 text-sm text-[#6a645a]">
@@ -125,7 +128,7 @@ export default function CheckoutPage() {
                 </div>
               ))}
 
-              <div className="rounded-[24px] border border-[#16382c]/8 bg-white/80 p-6 shadow-[0_10px_28px_rgba(22,56,44,0.05)]">
+              <div className="rounded-[20px] border border-[#16382c]/8 bg-white/80 p-5 shadow-[0_10px_28px_rgba(22,56,44,0.05)] sm:p-6">
                 <p className="text-sm leading-6 text-[#6a645a]">
                   Requesting as{" "}
                   {user?.fullName || user?.primaryEmailAddress?.emailAddress || "signed-in guest"}.
@@ -144,7 +147,7 @@ export default function CheckoutPage() {
                 />
                 <button
                   type="button"
-                  className="mt-5 w-full rounded-full bg-[#16382c] py-3.5 text-[12px] font-medium tracking-[0.16em] text-[#f6f0e6] uppercase transition hover:bg-[#0f241c]"
+                  className="btn btn-primary mt-5 w-full py-3.5"
                   onClick={() => {
                     setPlacedSummary(
                       lines.map((line) => `${line.qty} × ${line.bowl.shortName}`),

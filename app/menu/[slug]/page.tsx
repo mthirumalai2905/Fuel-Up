@@ -39,76 +39,76 @@ export default async function BowlDetailPage({
 
   const { userId } = await auth();
   const signedIn = Boolean(userId);
+  const backHref = signedIn ? "/menu" : "/#menu";
 
   return (
-    <div className="bg-[#f6f0e6] px-4 py-12 sm:px-6">
-      <div className="mx-auto w-full max-w-3xl overflow-hidden rounded-[28px] bg-white text-[#1a1916] shadow-[0_24px_60px_rgba(22,56,44,0.1)]">
-        <div className="relative aspect-square bg-[#ebe2d2]">
+    <div className="bg-[#f6f0e6] px-4 py-8 sm:px-6 sm:py-12">
+      <div className="mx-auto grid w-full max-w-[1100px] overflow-hidden rounded-[24px] bg-white shadow-[0_20px_50px_rgba(22,56,44,0.08)] lg:grid-cols-2">
+        <div className="relative aspect-square bg-[#ebe2d2] lg:aspect-auto lg:min-h-[560px]">
           <Image
             src={bowl.image}
             alt={bowl.shortName}
             fill
             className="object-contain"
             priority
-            sizes="768px"
+            sizes="(min-width: 1024px) 50vw, 100vw"
           />
-          <Link
-            href={signedIn ? "/menu" : "/#menu"}
-            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#16382c] text-[#f6f0e6] transition hover:bg-[#0f241c]"
-            aria-label="Close"
-          >
-            ×
-          </Link>
         </div>
 
-        <div className="space-y-6 p-7 sm:p-10">
-          <div className="flex items-start gap-3">
+        <div className="flex flex-col p-6 sm:p-10">
+          <Link
+            href={backHref}
+            className="text-[11px] font-medium tracking-[0.16em] text-[#6a645a] uppercase underline-offset-4 hover:text-[#16382c] hover:underline"
+          >
+            Back to menu
+          </Link>
+
+          <div className="mt-6 flex items-start gap-3">
             <DietMark diet={bowl.diet} />
             <div>
               <p className="text-[11px] font-medium tracking-[0.2em] text-[#b8924a] uppercase">
                 {bowl.category}
               </p>
               <h1 className="mt-1 font-serif text-3xl tracking-[-0.02em] text-[#16382c] sm:text-4xl">
-                {bowl.name}
+                {bowl.shortName}
               </h1>
             </div>
           </div>
 
-          <p className="leading-7 text-[#6a645a]">{bowl.description}</p>
-          {bowl.note ? <p className="text-sm text-[#6a645a]">{bowl.note}</p> : null}
+          <p className="mt-5 leading-7 text-[#6a645a]">{bowl.description}</p>
+          {bowl.note ? <p className="mt-3 text-sm text-[#6a645a]">{bowl.note}</p> : null}
 
           <Show when="signed-out">
-            <div className="rounded-[22px] bg-[#f6f0e6] p-6">
+            <div className="mt-8 rounded-[20px] bg-[#f6f0e6] p-6">
               <p className="font-serif text-2xl text-[#16382c]">Sign in for the full look</p>
               <p className="mt-2 text-sm leading-6 text-[#6a645a]">
                 Macros and checkout unlock after you create a Fuel Up account.
               </p>
-              <Link
-                href={signInHref(`/menu/${bowl.slug}`)}
-                className="mt-5 inline-flex rounded-full bg-[#16382c] px-6 py-2.5 text-[11px] font-medium tracking-[0.16em] text-[#f6f0e6] uppercase transition hover:bg-[#0f241c]"
-              >
+              <Link href={signInHref(`/menu/${bowl.slug}`)} className="btn btn-primary mt-5">
                 Sign in to continue
               </Link>
             </div>
           </Show>
 
           <Show when="signed-in">
-            {bowl.nutrition ? (
-              <div className="rounded-[22px] bg-[#f6f0e6] p-5">
-                <p className="mb-3 text-[11px] font-medium tracking-[0.18em] uppercase">
-                  Kitchen card, per serving
+            <div className="mt-8">
+              {bowl.nutrition ? (
+                <div className="rounded-[20px] bg-[#f6f0e6] p-5">
+                  <p className="mb-3 text-[11px] font-medium tracking-[0.18em] uppercase">
+                    Kitchen card, per serving
+                  </p>
+                  <MacroRow bowl={bowl} />
+                  <p className="mt-4 text-sm text-[#6a645a]">Fiber: {bowl.nutrition.fiberLabel}</p>
+                </div>
+              ) : (
+                <p className="text-sm text-[#6a645a]">
+                  This kitchen card did not list calories, protein, carbs, or fat. Ask in the cafe
+                  if you need those numbers.
                 </p>
-                <MacroRow bowl={bowl} />
-                <p className="mt-4 text-sm text-[#6a645a]">Fiber: {bowl.nutrition.fiberLabel}</p>
-              </div>
-            ) : (
-              <p className="text-sm text-[#6a645a]">
-                This kitchen card did not list calories, protein, carbs, or fat. Ask in the cafe
-                if you need those numbers.
-              </p>
-            )}
+              )}
+            </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="mt-5 flex flex-wrap gap-2">
               {bowl.tags.map((tag) => (
                 <span
                   key={tag}
@@ -122,7 +122,7 @@ export default async function BowlDetailPage({
               </span>
             </div>
 
-            <div className="flex items-center justify-end border-t border-[#16382c]/10 pt-5">
+            <div className="mt-auto border-t border-[#16382c]/10 pt-5 sm:pt-6">
               <AddToBagButton slug={bowl.slug} />
             </div>
           </Show>

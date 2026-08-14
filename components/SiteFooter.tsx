@@ -3,8 +3,8 @@ import { site } from "@/lib/site";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-auto bg-[#0f241c] px-4 py-16 text-[#d8d0c4] sm:px-6">
-      <div className="mx-auto grid w-full max-w-[1180px] gap-12 md:grid-cols-4">
+    <footer className="mt-auto bg-[#0f241c] px-4 py-14 text-[#d8d0c4] sm:px-6 sm:py-16">
+      <div className="mx-auto grid w-full max-w-[1180px] gap-10 md:grid-cols-4 md:gap-12">
         <div className="md:col-span-2">
           <p className="font-serif text-4xl tracking-[-0.03em] text-[#f6f0e6]">
             {site.brandName.toLowerCase()}
@@ -31,8 +31,11 @@ export function SiteFooter() {
             Pages
           </p>
           <div className="mt-3 flex flex-col gap-2 text-[14px]">
-            <Link className="hover:text-[#f6f0e6]" href="/#menu">
+            <Link className="hover:text-[#f6f0e6]" href="/menu">
               Menu
+            </Link>
+            <Link className="hover:text-[#f6f0e6]" href="/#visit">
+              Visit
             </Link>
             <Link className="hover:text-[#f6f0e6]" href="/privacy">
               Privacy Policy
@@ -43,11 +46,11 @@ export function SiteFooter() {
           </div>
         </nav>
       </div>
-      <div className="mx-auto mt-14 flex w-full max-w-[1180px] justify-between border-t border-white/10 pt-6 text-[12px] tracking-wide text-[#9a9286]">
+      <div className="mx-auto mt-12 flex w-full max-w-[1180px] flex-col gap-3 border-t border-white/10 pt-6 text-[12px] tracking-wide text-[#9a9286] sm:mt-14 sm:flex-row sm:justify-between">
         <p>Fuel Up, Karvenagar</p>
-        <Link className="hover:text-[#d8d0c4]" href="/#visit">
-          Find the cafe
-        </Link>
+        <a className="hover:text-[#d8d0c4]" href={`tel:${site.phoneTel}`}>
+          {site.phoneDisplay}
+        </a>
       </div>
     </footer>
   );

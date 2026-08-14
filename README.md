@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fuel Up
 
-## Getting Started
+Cafe website for Fuel Up on Cummins College Road, Karvenagar, Pune.
 
-First, run the development server:
+Guests can preview bowls on the homepage. A signed-in account unlocks the full menu, kitchen macros, and a pickup request. Payment happens at the cafe.
+
+## Local
+
+```bash
+npm install
+cp .env.example .env.local
+```
+
+Add your Clerk keys to `.env.local`, then:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Host **this folder** (`fuelup-web`). If Vercel is connected to the GitHub repo, the app root is already this folder.
 
-## Learn More
+A live **Internal Server Error** almost always means Clerk keys are missing on the host. Local `.env.local` is not uploaded.
 
-To learn more about Next.js, take a look at the following resources:
+1. Open [Clerk API keys](https://dashboard.clerk.com/last-active?path=api-keys).
+2. In Vercel: Project → Settings → Environment Variables. Add all of these for Production and Preview:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` (`pk_test_...` or `pk_live_...`)
+   - `CLERK_SECRET_KEY` (`sk_test_...` or `sk_live_...`)
+   - `NEXT_PUBLIC_CLERK_SIGN_IN_URL` = `/sign-in`
+   - `NEXT_PUBLIC_CLERK_SIGN_UP_URL` = `/sign-up`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. In Clerk, add your live URL (for example `https://your-app.vercel.app`) under allowed origins, redirect URLs, and the home URL.
+4. Redeploy. Env changes do not apply until a new deploy.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Do not commit `.env.local`.

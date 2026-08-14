@@ -15,7 +15,14 @@ import {
 } from "@/lib/filters";
 import { categories, type Category, type Diet } from "@/lib/menu";
 
-function Option({
+const categoryLabel: Record<Category, string> = {
+  "High Protein Salad bowl": "Salad",
+  "Protein Rice Bowl": "Rice",
+  "Smoothie Bowl": "Smoothie",
+  Breakfast: "Breakfast",
+};
+
+function Chip({
   active,
   onClick,
   children,
@@ -28,8 +35,10 @@ function Option({
     <button
       type="button"
       onClick={onClick}
-      className={`flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left text-[14px] leading-5 transition ${
-        active ? "bg-[#16382c] text-[#f6f0e6]" : "text-[#3d3a34] hover:bg-[#e4d9c6]"
+      className={`inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] leading-none transition ${
+        active
+          ? "bg-[#16382c] text-[#f6f0e6]"
+          : "bg-[#f6f0e6] text-[#3d3a34] hover:bg-[#e4d9c6]"
       }`}
     >
       {children}
@@ -39,11 +48,11 @@ function Option({
 
 function Group({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="px-4 py-5">
-      <p className="mb-2 px-3 text-[10px] font-medium tracking-[0.2em] text-[#b8924a] uppercase">
+    <div>
+      <p className="mb-2.5 text-[10px] font-medium tracking-[0.2em] text-[#b8924a] uppercase">
         {label}
       </p>
-      <div className="space-y-0.5">{children}</div>
+      <div className="flex flex-wrap gap-1.5">{children}</div>
     </div>
   );
 }
@@ -68,11 +77,37 @@ export function MenuExplorer({ signedIn = true }: { signedIn?: boolean }) {
       .filter((group) => group.bowls.length > 0);
   }, [filters.category, filters.sort, items]);
 
-  const filtersBody = (
+  const dietChips = (
     <>
-      <div className="flex items-center justify-between border-b border-[#16382c]/10 px-7 py-5">
+      {(
+        [
+          ["veg", "Veg", "veg"],
+          ["egg", "Egg", "egg"],
+          ["non-veg", "Non-veg", "non-veg"],
+        ] as const
+      ).map(([value, label, diet]) => (
+        <Chip
+          key={value}
+          active={filters.diet === value}
+          onClick={() =>
+            setFilters((current) => ({
+              ...current,
+              diet: current.diet === value ? "all" : (value as DietFilter),
+            }))
+          }
+        >
+          <DietMark diet={diet as Diet} />
+          {label}
+        </Chip>
+      ))}
+    </>
+  );
+
+  const filtersBody = (
+    <div className="flex flex-col gap-6 px-6 py-6">
+      <div className="flex items-center justify-between">
         <p className="text-[11px] font-medium tracking-[0.2em] text-[#16382c] uppercase">
-          Filters
+          Refine
         </p>
         {active ? (
           <button
@@ -85,190 +120,210 @@ export function MenuExplorer({ signedIn = true }: { signedIn?: boolean }) {
         ) : null}
       </div>
 
-      <Group label="Diet">
-        {(
-          [
-            ["all", "All", null],
-            ["veg", "Veg", "veg"],
-            ["egg", "Egg", "egg"],
-            ["non-veg", "Non-veg", "non-veg"],
-          ] as const
-        ).map(([value, label, diet]) => (
-          <Option
-            key={value}
-            active={filters.diet === value}
-            onClick={() => setFilters((current) => ({ ...current, diet: value as DietFilter }))}
-          >
-            {diet ? <DietMark diet={diet as Diet} /> : <span className="w-[18px]" />}
-            {label}
-          </Option>
-        ))}
-      </Group>
-
-      <div className="mx-7 h-px bg-[#16382c]/10" />
+      <Group label="Diet">{dietChips}</Group>
 
       <Group label="Protein">
         {(
           [
-            ["all", "All"],
-            ["high", "High protein"],
-            ["extra", "35g+ protein"],
+            ["high", "High"],
+            ["extra", "35g+"],
           ] as const
         ).map(([value, label]) => (
-          <Option
+          <Chip
             key={value}
             active={filters.protein === value}
             onClick={() =>
-              setFilters((current) => ({ ...current, protein: value as ProteinFilter }))
+              setFilters((current) => ({
+                ...current,
+                protein: current.protein === value ? "all" : (value as ProteinFilter),
+              }))
             }
           >
             {label}
-          </Option>
+          </Chip>
         ))}
       </Group>
-
-      <div className="mx-7 h-px bg-[#16382c]/10" />
 
       <Group label="Calories">
         {(
           [
-            ["all", "All"],
             ["light", "Under 350"],
             ["mid", "350 to 449"],
             ["hearty", "450+"],
           ] as const
         ).map(([value, label]) => (
-          <Option
+          <Chip
             key={value}
             active={filters.calories === value}
             onClick={() =>
-              setFilters((current) => ({ ...current, calories: value as CalorieFilter }))
+              setFilters((current) => ({
+                ...current,
+                calories: current.calories === value ? "all" : (value as CalorieFilter),
+              }))
             }
           >
             {label}
-          </Option>
+          </Chip>
         ))}
       </Group>
 
-      <div className="mx-7 h-px bg-[#16382c]/10" />
-
       <Group label="More">
-        <Option
+        <Chip
           active={filters.highFiber}
           onClick={() => setFilters((current) => ({ ...current, highFiber: !current.highFiber }))}
         >
           High fibre
-        </Option>
-        <Option
+        </Chip>
+        <Chip
           active={filters.lowCarb}
           onClick={() => setFilters((current) => ({ ...current, lowCarb: !current.lowCarb }))}
         >
           Low carb
-        </Option>
+        </Chip>
       </Group>
 
-      <div className="mx-7 h-px bg-[#16382c]/10" />
-
       <Group label="Type">
-        <Option
-          active={filters.category === "all"}
-          onClick={() => setFilters((current) => ({ ...current, category: "all" }))}
-        >
-          All bowls
-        </Option>
         {categories.map((category) => (
-          <Option
+          <Chip
             key={category}
             active={filters.category === category}
             onClick={() =>
               setFilters((current) => ({
                 ...current,
-                category: current.category === category ? "all" : (category as Category),
+                category: current.category === category ? "all" : category,
               }))
             }
           >
-            {category}
-          </Option>
+            {categoryLabel[category]}
+          </Chip>
         ))}
       </Group>
 
-      <div className="mx-7 h-px bg-[#16382c]/10" />
-
-      <Group label="Sort">
-        {(
-          [
-            ["featured", "Featured"],
-            ["protein-desc", "Highest protein"],
-            ["calories-asc", "Lowest calories"],
-            ["calories-desc", "Highest calories"],
-          ] as const
-        ).map(([value, label]) => (
-          <Option
-            key={value}
-            active={filters.sort === value}
-            onClick={() => setFilters((current) => ({ ...current, sort: value as SortKey }))}
-          >
-            {label}
-          </Option>
-        ))}
-      </Group>
-    </>
+      <div>
+        <p className="mb-2.5 text-[10px] font-medium tracking-[0.2em] text-[#b8924a] uppercase">
+          Sort
+        </p>
+        <label className="sr-only" htmlFor="menu-sort">
+          Sort bowls
+        </label>
+        <select
+          id="menu-sort"
+          value={filters.sort}
+          onChange={(event) =>
+            setFilters((current) => ({ ...current, sort: event.target.value as SortKey }))
+          }
+          className="w-full appearance-none rounded-full border border-[#16382c]/12 bg-[#f6f0e6] px-4 py-2.5 text-[12px] text-[#16382c] outline-none"
+        >
+          <option value="featured">Featured</option>
+          <option value="protein-desc">Highest protein</option>
+          <option value="calories-asc">Lowest calories</option>
+          <option value="calories-desc">Highest calories</option>
+        </select>
+      </div>
+    </div>
   );
 
   return (
     <div className="flex h-full min-h-0 bg-[#f6f0e6]">
-      <aside className="hidden h-full w-[280px] shrink-0 flex-col overflow-y-auto border-r border-[#16382c]/10 bg-[#ebe2d2] lg:flex">
+      <aside className="hide-scrollbar hidden h-full w-[240px] shrink-0 overflow-y-auto border-r border-[#16382c]/10 bg-[#ebe2d2] lg:block">
         {filtersBody}
       </aside>
 
       <div className="flex min-h-0 min-w-0 flex-1 flex-col">
-        <div className="flex items-center justify-between border-b border-[#16382c]/10 px-4 py-4 sm:px-8">
-          <div>
-            <p className="text-[11px] font-medium tracking-[0.2em] text-[#b8924a] uppercase">
-              Menu
-            </p>
-            <h1 className="mt-1 font-serif text-2xl tracking-[-0.02em] text-[#16382c] sm:text-3xl">
-              {items.length} {items.length === 1 ? "bowl" : "bowls"}
-            </h1>
+        <div className="border-b border-[#16382c]/10 px-3 py-3 sm:px-6 sm:py-4">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <p className="text-[10px] font-medium tracking-[0.2em] text-[#b8924a] uppercase sm:text-[11px]">
+                Full menu
+              </p>
+              <h1 className="mt-0.5 font-serif text-[26px] leading-none tracking-[-0.03em] text-[#16382c] sm:text-[34px]">
+                {items.length} {items.length === 1 ? "bowl" : "bowls"}
+              </h1>
+            </div>
+            <div className="flex items-center gap-2 lg:hidden">
+              <label className="sr-only" htmlFor="menu-sort-mobile">
+                Sort bowls
+              </label>
+              <select
+                id="menu-sort-mobile"
+                value={filters.sort}
+                onChange={(event) =>
+                  setFilters((current) => ({ ...current, sort: event.target.value as SortKey }))
+                }
+                className="max-w-[132px] appearance-none rounded-full border border-[#16382c]/12 bg-white px-3 py-2 text-[11px] text-[#16382c] outline-none"
+              >
+                <option value="featured">Featured</option>
+                <option value="protein-desc">Protein</option>
+                <option value="calories-asc">Low cal</option>
+                <option value="calories-desc">High cal</option>
+              </select>
+              <button
+                type="button"
+                className="rounded-full bg-[#16382c] px-3.5 py-2 text-[11px] font-medium tracking-[0.14em] text-[#f6f0e6] uppercase"
+                onClick={() => setShowFilters(true)}
+              >
+                {active ? "Filters on" : "Filters"}
+              </button>
+            </div>
           </div>
-          <button
-            type="button"
-            className="rounded-full border border-[#16382c]/15 bg-white px-4 py-2 text-[11px] font-medium tracking-[0.16em] uppercase lg:hidden"
-            onClick={() => setShowFilters((value) => !value)}
-          >
-            {showFilters ? "Hide filters" : "Filters"}
-          </button>
+
+          <div className="hide-scrollbar mt-3 flex gap-1.5 overflow-x-auto pb-0.5 lg:hidden">
+            {dietChips}
+          </div>
         </div>
 
         {showFilters ? (
-          <div className="max-h-[50vh] overflow-y-auto border-b border-[#16382c]/10 bg-[#ebe2d2] lg:hidden">
-            {filtersBody}
+          <div className="lg:hidden">
+            <button
+              type="button"
+              className="fixed inset-0 z-50 bg-[#0f241c]/40"
+              aria-label="Close filters"
+              onClick={() => setShowFilters(false)}
+            />
+            <div className="fixed inset-x-0 bottom-0 z-50 max-h-[82dvh] overflow-hidden rounded-t-[24px] bg-[#ebe2d2] shadow-[0_-16px_40px_rgba(15,36,28,0.16)]">
+              <div className="mx-auto mt-3 h-1 w-10 rounded-full bg-[#16382c]/15" />
+              <div className="hide-scrollbar max-h-[calc(82dvh-5.5rem)] overflow-y-auto">
+                {filtersBody}
+              </div>
+              <div className="border-t border-[#16382c]/10 px-6 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+                <button
+                  type="button"
+                  className="w-full rounded-full bg-[#16382c] py-3 text-[11px] font-medium tracking-[0.16em] text-[#f6f0e6] uppercase"
+                  onClick={() => setShowFilters(false)}
+                >
+                  Show {items.length} {items.length === 1 ? "bowl" : "bowls"}
+                </button>
+              </div>
+            </div>
           </div>
         ) : null}
 
-        <div className="min-h-0 flex-1 overflow-y-auto px-4 py-8 sm:px-8">
+        <div className="menu-scroll min-h-0 flex-1 overflow-y-auto px-3 py-5 sm:px-6 sm:py-7">
           {items.length === 0 ? (
-            <div className="rounded-[22px] bg-[#ebe2d2] px-6 py-10 text-center">
-              <p className="font-serif text-2xl text-[#16382c]">No bowls match these filters</p>
+            <div className="mx-auto max-w-md rounded-[22px] bg-[#ebe2d2] px-6 py-12 text-center">
+              <p className="font-serif text-3xl text-[#16382c]">No bowls match</p>
+              <p className="mt-2 text-[15px] leading-6 text-[#6a645a]">
+                Try clearing a filter or two. The kitchen list is short on purpose.
+              </p>
               <button
                 type="button"
                 onClick={() => setFilters(defaultMenuFilters)}
-                className="mt-4 text-[11px] font-medium tracking-[0.16em] text-[#16382c] uppercase underline-offset-4 hover:underline"
+                className="mt-5 text-[11px] font-medium tracking-[0.16em] text-[#16382c] uppercase underline-offset-4 hover:underline"
               >
                 Clear filters
               </button>
             </div>
           ) : (
             grouped.map((group) => (
-              <section key={group.title ?? "sorted"} className="mb-14 last:mb-0">
+              <section key={group.title ?? "sorted"} className="mb-10 last:mb-6 sm:mb-14">
                 {group.title ? (
-                  <h2 className="font-serif text-3xl tracking-[-0.02em] text-[#16382c]">
+                  <h2 className="font-serif text-[22px] tracking-[-0.02em] text-[#16382c] sm:text-[26px]">
                     {group.title}
                   </h2>
                 ) : null}
-                <div className="mt-8 grid gap-x-7 gap-y-12 sm:grid-cols-2 xl:grid-cols-3">
+                <div className="mt-4 grid grid-cols-2 gap-x-3 gap-y-7 sm:mt-6 sm:gap-x-5 sm:gap-y-10 md:grid-cols-3 xl:grid-cols-4">
                   {group.bowls.map((bowl) => (
-                    <BowlCard key={bowl.id} bowl={bowl} signedIn={signedIn} />
+                    <BowlCard key={bowl.id} bowl={bowl} signedIn={signedIn} dense />
                   ))}
                 </div>
               </section>

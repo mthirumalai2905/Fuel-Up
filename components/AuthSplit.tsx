@@ -38,7 +38,7 @@ export function AuthSplit({
 }) {
   return (
     <div className="grid min-h-dvh bg-[#f6f0e6] lg:grid-cols-2">
-      <aside className="relative isolate min-h-[420px] overflow-hidden text-[#d8d0c4] lg:min-h-dvh">
+      <aside className="relative isolate min-h-[280px] overflow-hidden text-[#d8d0c4] sm:min-h-[340px] lg:min-h-dvh">
         <div className="absolute inset-0 grid grid-cols-2 grid-rows-2">
           {backgrounds.map((src) => (
             <div key={src} className="relative">
@@ -49,7 +49,7 @@ export function AuthSplit({
         <div className="absolute inset-0 bg-[#0f241c]/78" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0f241c] via-[#0f241c]/50 to-[#0f241c]/30" />
 
-        <div className="relative z-10 flex h-full flex-col justify-between px-8 py-10 sm:px-12 lg:px-16 lg:py-14">
+        <div className="relative z-10 flex h-full flex-col justify-between px-6 py-8 sm:px-12 sm:py-10 lg:px-16 lg:py-14">
           <Link
             href="/"
             className="font-serif text-3xl tracking-[-0.03em] text-[#f6f0e6]"
@@ -81,7 +81,7 @@ export function AuthSplit({
         </div>
       </aside>
 
-      <section className="relative flex items-center justify-center bg-[#f6f0e6] px-6 py-14 sm:px-10">
+      <section className="relative flex items-center justify-center bg-[#f6f0e6] px-4 py-10 sm:px-10 sm:py-14">
         <div className="relative z-10 w-full max-w-[420px] rounded-[28px] border border-[#16382c]/8 bg-white p-2 shadow-[0_24px_60px_rgba(15,36,28,0.1)]">
           {children}
         </div>

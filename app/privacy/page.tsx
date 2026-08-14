@@ -51,9 +51,11 @@ export default function PrivacyPage() {
           your device. We do not run a payment processor on this website.
         </p>
         <p className="mt-3">
-          This website does not have a contact form, reservation booking, newsletter signup, map
-          embed, or analytics or advertising tracker. Guest quotes on the homepage are static
-          text we placed on the page. We do not collect reviews through the site.
+          This website does not have a contact form, reservation booking, newsletter signup, or
+          analytics or advertising tracker. The Visit page shows a map of Cummins College Road
+          using public map tiles so you can find the cafe. That map does not use Google Maps
+          analytics. Guest quotes on the homepage are static text we placed on the page. We do
+          not collect reviews through the site.
         </p>
         <p className="mt-3">
           When you open a page, the computer that hosts the website may automatically receive
@@ -106,8 +108,9 @@ export default function PrivacyPage() {
         <p className="mt-3">
           This site is built with Next.js. The pages load typefaces through Next.js font
           handling, which may request font files from Google. That request is made so the text
-          looks consistent. Sign-in and account screens are provided by Clerk. We do not embed
-          social media feeds, maps, payment widgets, or review widgets on this website.
+          looks consistent. Sign-in and account screens are provided by Clerk. The Visit page
+          loads map tiles from OpenStreetMap and CARTO so the cafe pin can be shown. We do not
+          embed social media feeds, payment widgets, or review widgets on this website.
         </p>
       </section>
 

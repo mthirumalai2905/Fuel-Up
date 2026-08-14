@@ -141,22 +141,6 @@ function VerifiedBadge() {
   );
 }
 
-function ReplyIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden>
-      <path d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z" />
-    </svg>
-  );
-}
-
-function RepostIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden>
-      <path d="M4.75 3.79l4.603 4.3-1.706 1.82L6 8.38v7.37c0 .97.784 1.75 1.75 1.75H13V20H7.75c-2.347 0-4.25-1.9-4.25-4.25V8.38L1.853 9.91.147 8.09l4.603-4.3zm11.5 2.71H11V4h5.25c2.347 0 4.25 1.9 4.25 4.25v7.37l1.647-1.53 1.706 1.82-4.603 4.3-4.603-4.3 1.706-1.82L18 15.62V8.25c0-.97-.784-1.75-1.75-1.75z" />
-    </svg>
-  );
-}
-
 function LikeIcon() {
   return (
     <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" aria-hidden>
@@ -164,22 +148,6 @@ function LikeIcon() {
         fill="#f91880"
         d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
       />
-    </svg>
-  );
-}
-
-function ViewsIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden>
-      <path d="M8.75 21V3h2v18h-2zM18 21V8.5h2V21h-2zM4 21l.004-10h2L6 21H4zm9.248 0v-7h2v7h-2z" />
-    </svg>
-  );
-}
-
-function ShareIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden>
-      <path d="M12 2.59l5.7 5.7-1.41 1.42L13 6.41V16h-2V6.41l-3.3 3.3-1.41-1.42L12 2.59zM21 15l-.02 3.51c0 1.38-1.12 2.49-2.5 2.49H5.5C4.11 21 3 19.88 3 18.5V15h2v3.5c0 .28.22.5.5.5h12.98c.28 0 .5-.22.5-.5L19 15h2z" />
     </svg>
   );
 }
@@ -208,22 +176,8 @@ function TestimonialCard({ item }: { item: Testimonial }) {
 
           <p className="mt-2 text-[15px] leading-6 text-[#2b2924]">{item.quote}</p>
 
-          <div className="mt-4 flex max-w-[280px] items-center justify-between text-[#8a847a]">
-            <span aria-hidden>
-              <ReplyIcon />
-            </span>
-            <span aria-hidden>
-              <RepostIcon />
-            </span>
-            <span aria-hidden>
-              <LikeIcon />
-            </span>
-            <span aria-hidden>
-              <ViewsIcon />
-            </span>
-            <span aria-hidden>
-              <ShareIcon />
-            </span>
+          <div className="mt-4" aria-hidden>
+            <LikeIcon />
           </div>
         </div>
       </div>
@@ -240,13 +194,11 @@ export default function Testimonials() {
     <section
       id="testimonials"
       aria-labelledby="testimonials-heading"
-      className="w-full bg-[#f6f0e6] px-4 py-20 sm:px-6 lg:px-8"
+      className="w-full bg-[#f6f0e6] py-16 sm:py-20"
     >
-      <div className="mx-auto max-w-[1180px]">
-        <header className="mx-auto mb-12 max-w-2xl text-center md:mb-14">
-          <p className="text-[11px] font-medium tracking-[0.28em] text-[#b8924a] uppercase">
-            Regulars
-          </p>
+      <div className="wrap">
+        <header className="mx-auto mb-10 max-w-2xl text-center md:mb-14">
+          <p className="eyebrow">Regulars</p>
           <h2
             id="testimonials-heading"
             className="mt-3 font-serif text-[2.2rem] tracking-[-0.02em] text-[#16382c] sm:text-5xl"

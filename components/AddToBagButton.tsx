@@ -15,7 +15,7 @@ export function AddToBagButton({ slug }: { slug: string }) {
         setAdded(true);
         window.setTimeout(() => setAdded(false), 1600);
       }}
-      className="rounded-full bg-[#16382c] px-7 py-3 text-[12px] font-medium tracking-[0.16em] text-[#f6f0e6] uppercase transition hover:bg-[#0f241c]"
+      className="btn btn-primary w-full sm:w-auto"
     >
       {added ? "Added to bag" : "Add to bag"}
     </button>

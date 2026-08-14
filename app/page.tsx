@@ -14,76 +14,82 @@ export default function Home() {
 
   return (
     <div className="bg-[#f6f0e6]">
-      <section className="mx-auto w-full max-w-[1180px] px-4 pb-10 pt-14 text-center sm:px-6 sm:pt-20">
-        <p className="text-[11px] font-medium tracking-[0.28em] text-[#b8924a] uppercase">
-          Karvenagar · Pune
-        </p>
-        <h1 className="mx-auto mt-5 max-w-4xl font-serif text-[2.75rem] leading-[1.08] tracking-[-0.02em] text-[#16382c] sm:text-6xl md:text-[72px]">
+      <section className="wrap pb-8 pt-12 text-center sm:pb-10 sm:pt-16">
+        <p className="eyebrow">Karvenagar · Pune</p>
+        <h1 className="mx-auto mt-4 max-w-4xl font-serif text-[2.4rem] leading-[1.08] tracking-[-0.03em] text-[#16382c] sm:mt-5 sm:text-6xl md:text-[72px]">
           High-protein bowls, made for everyday fuel.
         </h1>
-        <p className="mx-auto mt-6 max-w-xl text-[16px] leading-7 text-[#6a645a]">
+        <p className="mx-auto mt-5 max-w-xl text-[15px] leading-7 text-[#6a645a] sm:mt-6 sm:text-[16px]">
           A small cafe on Cummins College Road. Fresh bowls and honest macros
           from the kitchen cards.
         </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <Link href="#menu" className="btn btn-primary">
+            See the bowls
+          </Link>
+          <Show when="signed-out">
+            <Link href={signInHref("/menu")} className="btn btn-outline">
+              Sign in
+            </Link>
+          </Show>
+          <Show when="signed-in">
+            <Link href="/menu" className="btn btn-outline">
+              Full menu
+            </Link>
+          </Show>
+        </div>
       </section>
 
       {featured ? (
-        <section className="mx-auto w-full max-w-[1180px] px-4 sm:px-6">
-          <div className="relative aspect-[16/9] overflow-hidden rounded-[28px] bg-[#ebe2d2] shadow-[0_30px_80px_rgba(22,56,44,0.12)]">
+        <section className="wrap">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[22px] bg-[#ebe2d2] shadow-[0_24px_60px_rgba(22,56,44,0.1)] sm:aspect-[16/9] sm:rounded-[28px]">
             <Image
               src="/bowls/hero-creamy-grilled-chicken.png"
               alt={featured.shortName}
               fill
               priority
-              className="object-cover"
+              className="object-contain"
               sizes="1180px"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0f241c]/10 via-transparent to-transparent" />
           </div>
 
-          <div className="mt-12 grid gap-10 border-b border-[#16382c]/10 pb-16 md:grid-cols-[1.1fr_0.9fr] md:items-end">
+          <div className="mt-10 grid gap-8 border-b border-[#16382c]/10 pb-14 md:grid-cols-[1.1fr_0.9fr] md:items-end md:gap-10 md:pb-16">
             <div className="text-left">
-              <div className="mb-5 h-px w-12 bg-[#b8924a]" />
-              <h2 className="text-[13px] font-semibold tracking-[0.16em] text-[#1a1916] uppercase">
+              <div className="mb-4 h-px w-12 bg-[#b8924a]" />
+              <h2 className="text-[12px] font-semibold tracking-[0.16em] text-[#1a1916] uppercase sm:text-[13px]">
                 {featured.shortName}
               </h2>
-              <p className="mt-4 max-w-md text-[16px] leading-7 text-[#6a645a]">
+              <p className="mt-3 max-w-md text-[15px] leading-7 text-[#6a645a] sm:mt-4 sm:text-[16px]">
                 {featured.description}
               </p>
               <Show when="signed-out">
-                <Link
-                  href={signInHref(`/menu/${featured.slug}`)}
-                  className="mt-8 inline-flex items-center rounded-full bg-[#16382c] px-7 py-3 text-[11px] font-medium tracking-[0.18em] text-[#f6f0e6] uppercase transition hover:bg-[#0f241c]"
-                >
-                  Get it →
+                <Link href={signInHref(`/menu/${featured.slug}`)} className="btn btn-primary mt-7">
+                  Get it
                 </Link>
               </Show>
               <Show when="signed-in">
-                <Link
-                  href={`/menu/${featured.slug}`}
-                  className="mt-8 inline-flex items-center rounded-full bg-[#16382c] px-7 py-3 text-[11px] font-medium tracking-[0.18em] text-[#f6f0e6] uppercase transition hover:bg-[#0f241c]"
-                >
-                  Get it →
+                <Link href={`/menu/${featured.slug}`} className="btn btn-primary mt-7">
+                  Get it
                 </Link>
               </Show>
             </div>
-            <div className="rounded-[22px] bg-[#ebe2d2]/70 px-6 py-6">
+            <div className="rounded-[20px] bg-[#ebe2d2]/70 px-5 py-5 sm:px-6 sm:py-6">
               <MacroRow bowl={featured} />
             </div>
           </div>
         </section>
       ) : null}
 
-      <section id="menu" className="mx-auto w-full max-w-[1180px] scroll-mt-32 px-4 py-20 sm:px-6">
+      <section id="menu" className="wrap scroll-mt-28 py-16 sm:scroll-mt-32 sm:py-20">
         <HomeMenu />
       </section>
 
-      <section id="mission" className="scroll-mt-32 bg-[#16382c]">
-        <div className="mx-auto grid w-full max-w-[1180px] gap-12 px-4 py-20 sm:px-6 md:grid-cols-[0.9fr_1.1fr] md:items-center">
-          <p className="font-serif text-4xl leading-[1.15] tracking-[-0.02em] text-[#f6f0e6] sm:text-5xl">
+      <section id="mission" className="scroll-mt-28 bg-[#16382c] sm:scroll-mt-32">
+        <div className="wrap grid gap-8 py-16 sm:py-20 md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-12">
+          <p className="font-serif text-[2rem] leading-[1.15] tracking-[-0.02em] text-[#f6f0e6] sm:text-5xl">
             Fresh bowls, honest macros, everyday prices.
           </p>
-          <div className="space-y-5 border-l border-[#b8924a]/50 pl-8 text-[16px] leading-8 text-[#d8d0c4]">
+          <div className="space-y-5 border-l border-[#b8924a]/50 pl-6 text-[15px] leading-8 text-[#d8d0c4] sm:pl-8 sm:text-[16px]">
             <p>
               {site.brandName} is a small cafe on Cummins College Road in Karvenagar. We cook
               protein bowls, salads, smoothie bowls, and simple breakfast plates for students and

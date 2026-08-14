@@ -9,7 +9,7 @@ type LegalPageProps = {
 export function LegalPage({ title, children }: LegalPageProps) {
   return (
     <div className="flex flex-1 flex-col bg-[#f6f0e6] text-[#6a645a]">
-      <article className="mx-auto w-full max-w-3xl flex-1 px-6 py-16">
+      <article className="mx-auto w-full max-w-3xl flex-1 px-5 py-12 sm:px-6 sm:py-16">
         <p className="text-[11px] font-medium tracking-[0.22em] text-[#b8924a] uppercase">
           {site.brandName}
         </p>
