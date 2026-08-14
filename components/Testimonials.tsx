@@ -141,20 +141,9 @@ function VerifiedBadge() {
   );
 }
 
-function LikeIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" aria-hidden>
-      <path
-        fill="#f91880"
-        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-      />
-    </svg>
-  );
-}
-
 function TestimonialCard({ item }: { item: Testimonial }) {
   return (
-    <article className="rounded-[20px] border border-[#16382c]/8 bg-white p-5 shadow-[0_12px_32px_rgba(15,36,28,0.07)] transition duration-300 hover:shadow-[0_18px_40px_rgba(15,36,28,0.11)]">
+    <article className="rounded-[20px] bg-white p-5 shadow-[0_10px_24px_rgba(15,36,28,0.08)] transition duration-300 hover:shadow-[0_16px_32px_rgba(15,36,28,0.12)]">
       <div className="flex gap-3">
         <div
           className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[13px] font-semibold text-white ${item.accent}`}
@@ -175,10 +164,6 @@ function TestimonialCard({ item }: { item: Testimonial }) {
           </div>
 
           <p className="mt-2 text-[15px] leading-6 text-[#2b2924]">{item.quote}</p>
-
-          <div className="mt-4" aria-hidden>
-            <LikeIcon />
-          </div>
         </div>
       </div>
     </article>
