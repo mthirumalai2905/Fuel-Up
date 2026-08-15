@@ -38,7 +38,7 @@ export function AuthSplit({
 }) {
   return (
     <div className="grid min-h-dvh bg-[#f6f0e6] lg:grid-cols-2">
-      <aside className="relative isolate min-h-[280px] overflow-hidden text-[#d8d0c4] sm:min-h-[340px] lg:min-h-dvh">
+      <aside className="relative isolate hidden overflow-hidden text-[#d8d0c4] lg:block lg:min-h-dvh">
         <div className="absolute inset-0 grid grid-cols-2 grid-rows-2">
           {backgrounds.map((src) => (
             <div key={src} className="relative">
@@ -81,7 +81,13 @@ export function AuthSplit({
         </div>
       </aside>
 
-      <section className="relative flex items-center justify-center bg-[#f6f0e6] px-4 py-10 sm:px-10 sm:py-14">
+      <section className="relative flex min-h-dvh flex-col items-center justify-center bg-[#f6f0e6] px-4 py-8 sm:px-10 sm:py-14">
+        <Link
+          href="/"
+          className="mb-6 font-serif text-[28px] tracking-[-0.03em] text-[#16382c] lg:hidden"
+        >
+          {site.brandName.toLowerCase()}
+        </Link>
         <div className="relative z-10 w-full max-w-[420px] rounded-[28px] border border-[#16382c]/8 bg-white p-2 shadow-[0_24px_60px_rgba(15,36,28,0.1)]">
           {children}
         </div>

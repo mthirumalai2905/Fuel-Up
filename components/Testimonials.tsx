@@ -143,7 +143,7 @@ function VerifiedBadge() {
 
 function TestimonialCard({ item }: { item: Testimonial }) {
   return (
-    <article className="rounded-[20px] bg-white p-5 shadow-[0_10px_24px_rgba(15,36,28,0.08)] transition duration-300 hover:shadow-[0_16px_32px_rgba(15,36,28,0.12)]">
+    <article className="rounded-[20px] bg-white p-5 shadow-[0_10px_24px_rgba(15,36,28,0.08)]">
       <div className="flex gap-3">
         <div
           className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[13px] font-semibold text-white ${item.accent}`}

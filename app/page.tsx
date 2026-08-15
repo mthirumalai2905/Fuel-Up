@@ -42,13 +42,13 @@ export default function Home() {
 
       {featured ? (
         <section className="wrap">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[22px] bg-[#ebe2d2] shadow-[0_24px_60px_rgba(22,56,44,0.1)] sm:aspect-[16/9] sm:rounded-[28px]">
+          <div className="relative aspect-[3/2] overflow-hidden rounded-[22px] bg-[#ebe2d2] shadow-[0_24px_60px_rgba(22,56,44,0.1)] sm:rounded-[28px]">
             <Image
               src="/bowls/hero-creamy-grilled-chicken.png"
               alt={featured.shortName}
               fill
               priority
-              className="object-contain"
+              className="object-cover object-center"
               sizes="1180px"
             />
           </div>
